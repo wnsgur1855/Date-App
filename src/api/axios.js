@@ -22,6 +22,11 @@ export const delItem = async (payload) => {
   return response;
 };
 
+export const putItem = async (payload) => {
+  const response = await axios.put(`http://localhost:4001/posts/${payload}`);
+  return response;
+};
+
 //쿼리 순서 콘솔찍어가며 파악
 //refetch
 //useEffect

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { QueryClient, useMutation, useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getItem, postItem, delItem } from '../api/axios';
 
@@ -31,6 +32,7 @@ function Home() {
     title: '',
     author: '',
   });
+  const navigate = useNavigate();
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -50,6 +52,7 @@ function Home() {
         author,
       };
       postMutate.mutateAsync(obj);
+      window.location.reload();
       //payload나오는 거 확인했으니 post요청으로 보내기
       console.log(obj);
     } catch (error) {
@@ -79,6 +82,7 @@ function Home() {
       const response = deleteMutate.mutateAsync(id);
       //payload찍어보려면  const response = deleteMutate.mutateAsync(id) 보내기 전 주석으로 ㄱ
       console.log(id);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +108,7 @@ function Home() {
               <div>{item.title}</div>
               <div>{item.author}</div>
               <button onClick={() => DelButtonHandler(item.id)}>삭제</button>
+              <button onClick={() => navigate(`/${item.id}`)}>이동</button>
             </MapBox>
           );
         })}

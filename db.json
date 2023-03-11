@@ -1,24 +1,24 @@
 {
   "posts": [
     {
-      "id": 9,
-      "title": "get성공이니",
-      "author": "ㅇㅇ"
-    },
-    {
-      "id": 10,
-      "title": "get성공이니",
-      "author": "ㅇㅇ"
-    },
-    {
-      "id": 11,
-      "title": "get성공이니",
-      "author": "ㅇㅇ"
-    },
-    {
       "title": "ㅇ",
       "author": "ㅇ",
       "id": 12
+    },
+    {
+      "title": "ㅇㅇ",
+      "author": "ㅇㅇ",
+      "id": 13
+    },
+    {
+      "title": "ㄹㄹ",
+      "author": "ㄹㄹ",
+      "id": 14
+    },
+    {
+      "title": "ㅎㅎ",
+      "author": "ㅀ",
+      "id": 15
     }
   ]
 }
