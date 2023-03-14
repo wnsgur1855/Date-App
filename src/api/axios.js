@@ -26,7 +26,7 @@ export const delItem = async (payload) => {
 export const putItem = async ({ id, put }) => {
   console.log({ id });
   console.log(put);
-  const response = await axios.put(`http://localhost:4001/posts/${id}`, { put });
+  const response = await axios.put(`http://localhost:4001/posts/${id}`, put);
   console.log(response);
   console.log(id);
   console.log(put);
