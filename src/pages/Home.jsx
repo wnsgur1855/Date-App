@@ -4,29 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getItem, postItem, delItem } from '../api/axios';
 
-const ContainerBox = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 10px;
-`;
-
-const MapContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
-
-const MapBox = styled.div`
-  width: 200px;
-  height: 100px;
-  border: 2px solid black;
-`;
-
 function Home() {
   const queryClient = new QueryClient();
-  const [del, setDel] = useState(false);
   //초기값으로 ""를 넣지 않는 경우 에러
   const [push, setPush] = useState({
     title: '',
@@ -41,9 +20,16 @@ function Home() {
       [name]: value,
     });
   };
+  //get -> useQuery를 사용해
+  const { isLoading, isError, data } = useQuery('posts', getItem, { cacheTime: 0 });
 
-  console.log(push.title);
-  console.log(push.author);
+  //post
+  const postMutate = useMutation(postItem, {
+    onSuccess: (data) => {
+      console.log('데이터 추가');
+      queryClient.invalidateQueries('posts');
+    },
+  });
   const postButtonHandler = () => {
     try {
       const { title, author } = push;
@@ -59,17 +45,6 @@ function Home() {
       console.log(error);
     }
   };
-  //get -> useQuery를 사용해
-  const { isLoading, isError, data } = useQuery('posts', getItem, { cacheTime: 0 });
-
-  //post
-  const postMutate = useMutation(postItem, {
-    onSuccess: (data) => {
-      console.log('데이터 추가');
-      queryClient.invalidateQueries('posts');
-    },
-  });
-
   //delete "쿼리키"
   const deleteMutate = useMutation(delItem, {
     onSuccess: (data) => {
@@ -96,27 +71,59 @@ function Home() {
   }
 
   return (
-    <>
+    <ContainerBox>
       <input type="text" name="title" onChange={onChangeHandler} />
       <input type="text" name="author" onChange={onChangeHandler} />
       <button onClick={postButtonHandler}>추가버튼</button>
+
       <MapContainer>
         {data.data.map((item) => {
           return (
             <MapBox key={item.id}>
-              <div>{item.id}</div>
-              <div>{item.title}</div>
-              <div>{item.author}</div>
+              <MapDiv>{item.id}</MapDiv>
+              <MapDiv>{item.title}</MapDiv>
+              <MapDiv>{item.author}</MapDiv>
               <button onClick={() => DelButtonHandler(item.id)}>삭제</button>
               <button onClick={() => navigate(`/${item.id}`)}>이동</button>
             </MapBox>
           );
         })}
       </MapContainer>
-      <div>여기는get목록들</div>
-    </>
+    </ContainerBox>
   );
 }
+
+const ContainerBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  padding: 10px;
+  gap: 10px;
+`;
+
+const MapContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+const MapBox = styled.div`
+  width: 200px;
+  height: 100px;
+  border: 2px solid #23169c;
+  border-radius: 5px;
+  background-color: aqua;
+`;
+
+const MapDiv = styled.div`
+  width: 100px;
+  height: 20px;
+  border: 2px solid black;
+`;
 
 // map함수 전부 key를
 export default Home;

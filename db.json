@@ -1,24 +1,24 @@
 {
   "posts": [
     {
-      "title": "ㅇ",
-      "author": "ㅇ",
-      "id": 12
+      "title": "",
+      "author": "",
+      "id": 1
     },
     {
-      "title": "ㅇㅇ",
-      "author": "ㅇㅇ",
-      "id": 13
+      "title": "",
+      "author": "",
+      "id": 2
     },
     {
-      "title": "ㄹㄹ",
-      "author": "ㄹㄹ",
-      "id": 14
+      "title": "",
+      "author": "",
+      "id": 3
     },
     {
-      "title": "ㅎㅎ",
-      "author": "ㅀ",
-      "id": 15
+      "title": "",
+      "author": "",
+      "id": 4
     }
   ]
 }

@@ -22,8 +22,14 @@ export const delItem = async (payload) => {
   return response;
 };
 
+//put요청
 export const putItem = async (payload) => {
-  const response = await axios.put(`http://localhost:4001/posts/${payload}`);
+  const response = await axios.put(`http://localhost:4001/posts/${payload}`, payload);
+  return response;
+};
+
+export const detailItem = async (payload) => {
+  const response = await axios.get(`http://localhost:4001${payload}`);
   return response;
 };
 
