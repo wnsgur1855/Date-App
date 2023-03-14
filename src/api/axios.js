@@ -4,7 +4,7 @@ import React from 'react';
 //get요청
 export const getItem = async () => {
   const response = await axios.get('http://localhost:4001/posts');
-  console.log('서버와 연결 성공get성공');
+  //   console.log('서버와 연결 성공get성공');
   return response;
 };
 //post요청
@@ -23,8 +23,13 @@ export const delItem = async (payload) => {
 };
 
 //put요청
-export const putItem = async (payload) => {
-  const response = await axios.put(`http://localhost:4001/posts/${payload}`, payload);
+export const putItem = async ({ id, put }) => {
+  console.log({ id });
+  console.log(put);
+  const response = await axios.put(`http://localhost:4001/posts/${id}`, { put });
+  console.log(response);
+  console.log(id);
+  console.log(put);
   return response;
 };
 

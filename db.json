@@ -1,24 +1,14 @@
 {
   "posts": [
     {
-      "title": "",
-      "author": "",
       "id": 1
     },
     {
-      "title": "",
-      "author": "",
+      "put": {
+        "title": "xc",
+        "author": "xc"
+      },
       "id": 2
-    },
-    {
-      "title": "",
-      "author": "",
-      "id": 3
-    },
-    {
-      "title": "",
-      "author": "",
-      "id": 4
     }
   ]
 }
