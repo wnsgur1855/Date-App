@@ -11,6 +11,7 @@ function Detail() {
     title: '',
     author: '',
   });
+  const [modal, setModal] = useState(false);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -46,10 +47,11 @@ function Detail() {
     return item.id === parseInt(id);
   });
 
-  const handler = () => {
+  const handler = (e) => {
     try {
       putMutate.mutateAsync({ id, put });
-      //   window.location.reload();
+      e.target.remove();
+      window.location.reload();
 
       console.log(id);
       console.log(put);
@@ -58,23 +60,74 @@ function Detail() {
     }
   };
 
+  const modalHandler = (e) => {
+    setModal(true);
+    e.target.remove();
+  };
+
   return (
-    <DetailContainer>
-      <input name="title" onChange={onChangeHandler} />
-      <input name="author" onChange={onChangeHandler} />
-      <button onClick={handler}>딸깍</button>
-      <div>{findItem.id}</div>
-      <div>{findItem.title}</div>
-      <div>{findItem.author}</div>
-    </DetailContainer>
+    <>
+      <DetailContainer>
+        <DivText>
+          아이디
+          <Text>{findItem.id}</Text>
+          댓글수정
+          <Text>{findItem.title}</Text>
+          댓글작가
+          <Text>{findItem.author}</Text>
+          <button onClick={modalHandler}>댓글 수정</button>
+          {modal ? (
+            <Top>
+              <Input name="title" onChange={onChangeHandler} placeholder="title" />
+              <Input name="author" onChange={onChangeHandler} placeholder="author" />
+              <Button onClick={handler}>딸깍</Button>
+            </Top>
+          ) : null}
+        </DivText>
+      </DetailContainer>
+    </>
   );
 }
+
+const Top = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+  height: 500px;
+  background-color: #1a5097;
+`;
+
+const Input = styled.input`
+  width: 200px;
+  height: 50px;
+  outline: none;
+`;
+
+const Button = styled.button`
+  width: 200px;
+  height: 50px;
+`;
 
 const DetailContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 300px;
-  background-color: red;
+`;
+
+const DivText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+`;
+
+const Text = styled.div`
+  width: 500px;
+  height: 100px;
+  border-style: dotted;
 `;
 
 export default Detail;
