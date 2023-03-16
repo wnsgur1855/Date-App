@@ -1,12 +1,19 @@
 {
   "posts": [
     {
+      "title": "fuck",
+      "author": "man",
       "id": 1
     },
     {
       "title": "",
       "author": "",
       "id": 2
+    },
+    {
+      "title": "zzzz",
+      "author": "AAAAAA",
+      "id": 3
     }
   ]
 }

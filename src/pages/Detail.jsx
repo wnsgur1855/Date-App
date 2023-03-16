@@ -5,6 +5,13 @@ import styled from 'styled-components';
 import { getItem, putItem } from '../api/axios';
 import { QueryClient } from 'react-query';
 
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
+
 function Detail() {
   const { id } = useParams();
   const [put, setPut] = useState({
@@ -29,8 +36,6 @@ function Detail() {
       console.log(putItem);
     },
   });
-  //useQuery 훅은 첫 번째 인자로 쿼리 식별자를 받는다. 이 쿼리 식별자는 캐시를 구분하기 위한 역할을 한다.(쿼리 키)
-  //id를 쓴 것은 id값이 변경될 때마다 getItem함수를 호출하여 해당 `id`에 해당하는 데이터를 가져오게 된다.
 
   const { isLoading, isError, data } = useQuery(['posts', parseInt(id)], () => getItem(id));
   if (isLoading) {
@@ -40,12 +45,7 @@ function Detail() {
     return <div>에러남</div>;
   }
 
-  //   console.log({ id });
-  //   console.log(data);
-  const findItem = data.data.find((item) => {
-    // console.log(data);
-    return item.id === parseInt(id);
-  });
+  const findItem = data.data.find((item) => item.id === parseInt(id));
 
   const handler = (e) => {
     try {
@@ -65,8 +65,38 @@ function Detail() {
     e.target.remove();
   };
 
+  const Data = [
+    { src: '/love.png' },
+    { src: '/gong.png' },
+    { src: '/whang.png' },
+    { src: '/hh.png' },
+  ];
+
   return (
     <>
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        autoplay={{
+          delay: 3000,
+        }}
+        loop={true}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log('slide change')}
+      >
+        {Data.map((item, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <img src={item.src} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+
       <DetailContainer>
         <DivText>
           아이디
