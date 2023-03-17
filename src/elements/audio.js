@@ -24,3 +24,5 @@ export const muteState = atom({
   key: 'muteState',
   default: false,
 });
+
+//라이브러리 에러직면 atom string ~
