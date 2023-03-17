@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { RecoilRoot } from 'recoil';
 import Router from './Shared/Router';
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      <RecoilRoot>
+        <Router />
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }
