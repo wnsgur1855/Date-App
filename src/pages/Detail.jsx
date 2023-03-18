@@ -96,12 +96,6 @@ function Detail() {
           );
         })}
       </Swiper>
-      <figure>
-        <figcaption>Listen to the T-Rex:</figcaption>
-        <audio controls src="/media/cc0-audio/t-rex-roar.mp3">
-          <a href="/media/cc0-audio/t-rex-roar.mp3">Download audio</a>
-        </audio>
-      </figure>
       <DetailContainer>
         <DivText>
           아이디

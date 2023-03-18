@@ -76,7 +76,6 @@ function Home() {
       <input type="text" name="title" onChange={onChangeHandler} />
       <input type="text" name="author" onChange={onChangeHandler} />
       <button onClick={postButtonHandler}>추가버튼</button>
-      <link rel="icon" type="image/png" href="imgs/love.png" />
       <MapContainer>
         {data.data.map((item) => {
           return (

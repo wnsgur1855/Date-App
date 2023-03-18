@@ -13,12 +13,9 @@ const HeaderBar = styled.div`
 
 function Header() {
   return (
-    <>
-      <HeaderBar>
-        <AudioPlayer />
-      </HeaderBar>
-      ;
-    </>
+    <HeaderBar>
+      <AudioPlayer />
+    </HeaderBar>
   );
 }
 
