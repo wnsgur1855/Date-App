@@ -1,129 +1,84 @@
-import React, { useEffect, useState } from 'react';
-import { QueryClient, useMutation, useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { getItem, postItem, delItem } from '../api/axios';
-import Slider from 'react-slick';
+
+const HomeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 98vh;
+  border: 1px solid;
+`;
+
+const SS = styled.button`
+  display: grid;
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  grid-template-columns: repeat(4, 180px);
+  gap: 16px 83px;
+  overflow: hidden;
+  margin-top: 28px;
+  padding: 30px 40px;
+  line-height: 20px;
+  transition: transform 0.2s ease-in-out;
+  white-space: nowrap;
+  -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffcccc;
+    width: 200px;
+    height: 200px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(360deg);
+    transition-duration: 0.5s;
+    transition-timing-function: steps(4, end);
+    transition-delay: 1s;
+    transition-property: opacity, left, top, height;
+    transition-duration: 3s, 5s, 3s, 5s;
+  }
+`;
+
+const Sw = styled.div`
+  position: relative;
+  transition-property: background-color, color;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  text-align: left;
+  background-color: grey;
+  left: 5px;
+  top: 5px;
+  height: 26px;
+  color: white;
+  border-color: black;
+  font-family: sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  box-shadow: 2px 2px 1px black;
+  padding: 2px 4px;
+  border: solid 1px black;
+  & :hover {
+    position: relative;
+    transition-property: background-color, color;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 1px black;
+  }
+`;
 
 function Home() {
-  const queryClient = new QueryClient();
-  //초기값으로 ""를 넣지 않는 경우 에러
-  const [push, setPush] = useState({
-    title: '',
-    author: '',
-  });
-  const navigate = useNavigate();
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setPush({
-      ...push,
-      [name]: value,
-    });
-  };
-  //get -> useQuery를 사용해
-  const { isLoading, isError, data } = useQuery('posts', getItem, { cacheTime: 0 });
-
-  //post
-  const postMutate = useMutation(postItem, {
-    onSuccess: (data) => {
-      console.log('데이터 추가');
-      queryClient.invalidateQueries('posts');
-    },
-  });
-  const postButtonHandler = () => {
-    try {
-      const { title, author } = push;
-      const obj = {
-        title,
-        author,
-      };
-      postMutate.mutateAsync(obj);
-      window.location.reload();
-      //payload나오는 거 확인했으니 post요청으로 보내기
-      console.log(obj);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  //delete "쿼리키"
-  const deleteMutate = useMutation(delItem, {
-    onSuccess: (data) => {
-      console.log('데이터 삭제');
-      queryClient.invalidateQueries('posts');
-    },
-  });
-  const DelButtonHandler = (id) => {
-    try {
-      const response = deleteMutate.mutateAsync(id);
-      //payload찍어보려면  const response = deleteMutate.mutateAsync(id) 보내기 전 주석으로 ㄱ
-      console.log(id);
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (isLoading) {
-    return <p>로딩중입니다</p>;
-  }
-  if (isError) {
-    return <p>오류발생</p>;
-  }
-
   return (
-    <ContainerBox>
-      <input type="text" name="title" onChange={onChangeHandler} />
-      <input type="text" name="author" onChange={onChangeHandler} />
-      <button onClick={postButtonHandler}>추가버튼</button>
-      <MapContainer>
-        {data.data.map((item) => {
-          return (
-            <MapBox key={item.id}>
-              <MapDiv>{item.id}</MapDiv>
-              <MapDiv>{item.title}</MapDiv>
-              <MapDiv>{item.author}</MapDiv>
-              <button onClick={() => DelButtonHandler(item.id)}>삭제</button>
-              <button onClick={() => navigate(`/${item.id}`)}>이동</button>
-            </MapBox>
-          );
-        })}
-      </MapContainer>
-    </ContainerBox>
+    <>
+      <HomeContainer>
+        <SS>안녕</SS>
+        Home
+        <Sw>하이하이</Sw>
+      </HomeContainer>
+    </>
   );
 }
 
-const ContainerBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 99%;
-  height: 80vh;
-  padding: 10px;
-  gap: 10px;
-`;
-
-const MapContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
-
-const MapBox = styled.div`
-  width: 200px;
-  height: 100px;
-  border: 2px solid #23169c;
-  border-radius: 5px;
-  background-color: aqua;
-`;
-
-const MapDiv = styled.div`
-  width: 100px;
-  height: 20px;
-  border: 2px solid black;
-`;
-
-// map함수 전부 key를
 export default Home;
