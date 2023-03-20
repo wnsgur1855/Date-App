@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Modal from '../components/Modal';
+import Login from '../components/Login';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -32,7 +35,7 @@ const SS = styled.button`
     height: 200px;
     -webkit-transform: rotate(180deg);
     transform: rotate(360deg);
-    transition-duration: 0.5s;
+    transition-duration: 0.1s;
     transition-timing-function: steps(4, end);
     transition-delay: 1s;
     transition-property: opacity, left, top, height;
@@ -70,10 +73,19 @@ const Sw = styled.div`
 `;
 
 function Home() {
+  const [loginModal, setLoginModal] = useState(false);
+
+  const navigate = useNavigate();
+  const longinHandler = () => {
+    alert('d');
+    setLoginModal(true);
+  };
+
   return (
     <>
       <HomeContainer>
-        <SS>안녕</SS>
+        <SS onClick={longinHandler}>안녕</SS>
+        {loginModal ? <Modal /> : null}
         Home
         <Sw>하이하이</Sw>
       </HomeContainer>
