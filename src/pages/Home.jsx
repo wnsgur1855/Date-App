@@ -98,7 +98,7 @@ const ContainerBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 99%;
   height: 80vh;
   padding: 10px;
   gap: 10px;

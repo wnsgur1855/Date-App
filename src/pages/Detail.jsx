@@ -66,10 +66,10 @@ function Detail() {
   };
 
   const Data = [
-    { src: '/love.png' },
-    { src: '/gong.png' },
-    { src: '/whang.png' },
-    { src: '/hh.png' },
+    { src: '/imgs/love.png' },
+    { src: '/imgs/gong.png' },
+    { src: '/imgs/whang.png' },
+    { src: '/imgs/hh.png' },
   ];
 
   return (
