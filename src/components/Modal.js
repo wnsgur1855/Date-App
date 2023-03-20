@@ -15,11 +15,10 @@ export const ModalContainer = styled.div`
 `;
 
 function Modal() {
-  return (
-    <ModalContainer>
-      {getCookie('token') ? <Login /> : <Signup />}
-      <button>ㅇㅇ</button>
-    </ModalContainer>
-  );
+  const [join, setJoin] = useState({
+    nickname: '',
+    password: '',
+  });
+  return <ModalContainer>{localStorage.getItem(join.nickname) && <Signup />}</ModalContainer>;
 }
 export default Modal;

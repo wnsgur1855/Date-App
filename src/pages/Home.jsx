@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from '../components/Modal';
 import Login from '../components/Login';
 
-const HomeContainer = styled.div`
+export const HomeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

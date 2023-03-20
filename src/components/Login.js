@@ -13,6 +13,13 @@ function Login() {
       [name]: value,
     });
   };
+
+  const longinHandler = () => {
+    localStorage.getItem('login.nickname');
+    localStorage.getItem('login.password');
+    alert('환영합니다`${login.nickname}`님');
+    console.log(login.nickname);
+  };
   return (
     <>
       <>로그인</>
@@ -24,7 +31,7 @@ function Login() {
         password
         <input name="password" onChange={onChangeLoingHandler} placeholder="비밀번호" />
       </div>
-      <button>로그인</button>
+      <button onClick={longinHandler}>로그인</button>
     </>
   );
 }
