@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [join, setJoin] = useState({
@@ -12,14 +13,19 @@ function Signup() {
       [name]: value,
     });
   };
-
+  const navigate = useNavigate();
   const signupHandler = () => {
+    if (localStorage.getItem('join.nickname')) {
+      alert('이미 가입된 vip닉네임입니다');
+      return;
+    }
     localStorage.setItem('join.nickname', join.nickname);
     localStorage.setItem('join.password', join.password);
     console.log(join.nickname);
-    alert('회원가입완료');
+    alert(`${join.nickname}VIP고객님 안녕하세요`);
+    navigate('main');
   };
-  return localStorage.getItem(join.nickname) ? (
+  return (
     <>
       <>이 사이트는 VIP회원들만 이용할 수 있습니다 회원가입시 로그인이 바로 유지됩니다.</>
       <div>
@@ -32,9 +38,8 @@ function Signup() {
       </div>
       <button onClick={signupHandler}>회원가입</button>
     </>
-  ) : (
-    <>안영</>
   );
 }
-
 export default Signup;
+
+//구조분해할당 이용해봅기
