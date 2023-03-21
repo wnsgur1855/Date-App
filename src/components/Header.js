@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeaderContainer, HeaderLeft, HeaderRight, Img, FriendBox, ImgBox } from '../styles/Header';
+import { ModalContainer, ModalStyle1, ModalStyle2, ModalButton } from './Modal';
 import Modal from './Modal';
 
 function Headers() {
@@ -11,8 +12,7 @@ function Headers() {
     navigate('my');
   };
   const informationHadler = () => {
-    alert('d');
-    setInformation(true);
+    setInformation((prev) => !prev);
   };
   return (
     localStorage.getItem('join.nickname') && (
@@ -20,7 +20,15 @@ function Headers() {
         <HeaderLeft fontSize="xx-large">
           오늘의 매칭
           <Img src="./imgs/information.svg" onClick={informationHadler} />
-          {information ? <Modal /> : null}
+          {information ? (
+            <ModalContainer>
+              <ModalStyle1>
+                <ModalStyle2>
+                  <ModalButton onClick={informationHadler}>close</ModalButton>
+                </ModalStyle2>
+              </ModalStyle1>
+            </ModalContainer>
+          ) : null}
         </HeaderLeft>
         <HeaderRight>
           <FriendBox>

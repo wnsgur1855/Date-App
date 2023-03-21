@@ -13,7 +13,7 @@ export const HomeContainer = styled.div`
   border: 1px solid;
 `;
 
-const SS = styled.button`
+export const SS = styled.button`
   display: grid;
   width: 80px;
   height: 80px;
@@ -75,16 +75,14 @@ const Sw = styled.div`
 function Home() {
   const [loginModal, setLoginModal] = useState(false);
 
-  const navigate = useNavigate();
   const longinHandler = () => {
-    alert('d');
     setLoginModal(true);
   };
 
   return (
     <>
       <HomeContainer>
-        <SS onClick={longinHandler}>안녕</SS>
+        <SS onClick={longinHandler}>입장하로 GO</SS>
         {loginModal ? <Modal /> : null}
         Home
         <Sw>하이하이</Sw>
