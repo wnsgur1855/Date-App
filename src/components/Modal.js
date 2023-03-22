@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Login from '../components/Login';
 import Signup from '../components/SignUp';
+import Main from '../pages/Main';
 import { getCookie } from '../utils/cookie';
 
 export const ModalContainer = styled.div`
@@ -55,7 +55,11 @@ function Modal() {
     <ModalContainer width="450px" height="500px">
       <Signup />
     </ModalContainer>
-  ) : null;
+  ) : (
+    <Main />
+  );
 }
 
 export default Modal;
+//현재 main페이지가 모달로 열림
+// 모달 표시 및 숨김을 제어하는 함수

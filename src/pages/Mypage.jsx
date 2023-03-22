@@ -7,7 +7,6 @@ import styled, { keyframes } from 'styled-components';
 import Swal from 'sweetalert2';
 import AudioPlayer from '../components/AudioPlayer';
 
-// 모달 표시 및 숨김을 제어하는 함수
 function useModal(initialState = false) {
   const [visible, setVisible] = useState(initialState);
 
@@ -23,7 +22,7 @@ function useModal(initialState = false) {
 }
 
 // 모달 컴포넌트 스타일드 컴포넌트로 정의
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +35,7 @@ const ModalWrapper = styled.div`
   z-index: 999;
 `;
 
-const ModalContents = styled.div`
+export const ModalContents = styled.div`
   background-color: #fff;
   border-radius: 4px;
   padding: 20px;
@@ -44,10 +43,10 @@ const ModalContents = styled.div`
 `;
 
 // 애니메이션 키프레임 정의
-const fadeIn = keyframes`
+export const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-500px);
+    transform: translateY(500px);
   }
 
   to {
@@ -56,7 +55,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const fadeOut = keyframes`
+export const fadeOut = keyframes`
   from {
     opacity: 1;
     transform: translateY(1);
@@ -90,7 +89,6 @@ function Mypage() {
     password: '',
   });
 
-  console.log(join.nickname);
   const [slide, setSlide] = useState(true);
   useEffect(() => {
     setSlide(true);
@@ -98,7 +96,7 @@ function Mypage() {
 
   const { visible, openModal, closeModal } = useModal(false);
   const navigate = useNavigate();
-  console.log(join.nickname);
+
   const logoutHandler = () => {
     localStorage.removeItem('join.nickname');
     localStorage.removeItem('join.password');
@@ -129,7 +127,7 @@ function Mypage() {
 
 export default Mypage;
 
-//헤더에있으면 뭐가 됐든 작동이 안 된다?
+//헤더에있으면 뭐가 됐든 작동이 안 된다? -->이유 z-index
 
 //로컬스토리지 key값 잘 확인하자
 
