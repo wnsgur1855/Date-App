@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from '../components/Modal';
-import Login from '../components/Login';
+
+import AudioPlayer from '../components/AudioPlayer';
+
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperImgBox, SwiperImg } from './Detail';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -10,7 +19,6 @@ export const HomeContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 98vh;
-  border: 1px solid;
 `;
 
 export const SS = styled.button`
@@ -78,9 +86,33 @@ function Home() {
   const longinHandler = () => {
     setLoginModal(true);
   };
-
+  const Data = [
+    { src: '/imgs/love.png' },
+    { src: '/imgs/gong.png' },
+    { src: '/imgs/whang.png' },
+    { src: '/imgs/hh.png' },
+  ];
   return (
     <>
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+        }}
+        loop={true}
+        pagination={{ clickable: true }}
+      >
+        {Data.map((item, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <SwiperImgBox>
+                <SwiperImg src={item.src} />
+              </SwiperImgBox>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
       <HomeContainer>
         <SS onClick={longinHandler}>입장하로 GO</SS>
         {loginModal ? <Modal /> : null}

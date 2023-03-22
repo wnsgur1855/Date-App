@@ -3,6 +3,7 @@ import { QueryClient, useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getItem, postItem, delItem } from '../api/axios';
+
 import Slider from 'react-slick';
 
 function Main() {
