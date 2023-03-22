@@ -10,15 +10,21 @@ export const HeaderContainer = styled.div`
   height: ${(props) => props.height};
   background-color: ${(props) => props.bg};
   box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
+  top: ${(props) => props.top};
+  z-index: 998;
 `;
 
 export const HeaderLeft = styled.h1`
   display: flex;
   justify-content: space-between;
-  width: 1000px;
+  width: 300px;
   font-family: 'KyoboHandwriting2021sjy';
   font-weight: 1000;
   font-size: ${(props) => props.fontSize};
+  cursor: pointer;
+  @media (max-width: 510px) {
+    font-size: x-large;
+  }
 `;
 
 export const HeaderRight = styled.div`
