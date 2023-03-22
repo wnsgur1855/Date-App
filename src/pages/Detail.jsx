@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getItem, putItem } from '../api/axios';
 import { QueryClient } from 'react-query';
+import { Img } from '../styles/Header';
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -52,12 +53,7 @@ function Detail() {
       putMutate.mutateAsync({ id, put });
       e.target.remove();
       window.location.reload();
-
-      console.log(id);
-      console.log(put);
-    } catch (error) {
-      console.log('수정이 안 되네?');
-    }
+    } catch (error) {}
   };
 
   const modalHandler = (e) => {
@@ -91,7 +87,9 @@ function Detail() {
         {Data.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={item.src} />
+              <SwiperImgBox>
+                <SwiperImg src={item.src} />
+              </SwiperImgBox>
             </SwiperSlide>
           );
         })}
@@ -157,6 +155,18 @@ const Text = styled.div`
   width: 500px;
   height: 100px;
   border-style: dotted;
+`;
+
+export const SwiperImgBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 200px;
+`;
+
+export const SwiperImg = styled.img`
+  width: 700px;
+  height: 300px;
 `;
 
 export default Detail;
