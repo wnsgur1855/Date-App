@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import SideVar from '../components/SideVar';
 import Home from '../pages/Home';
 import Detail from '../pages/Detail';
 import Main from '../pages/Main';
 import Mypage from '../pages/Mypage';
 import NotFound from '../pages/NotFound';
-import styled from 'styled-components';
+import MouseCursur from '../elements/MouseCursur';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <MouseCursur />
       <Header />
       <Routes>
         <Route path="/*" element={<NotFound />} />
