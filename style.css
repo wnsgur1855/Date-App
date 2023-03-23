@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  width: 250px;
+  height: 250px;
+  background-image: url('public/imgs/love.png');
+  transition: opacity 1s ease-in-out, filter 1s ease-in-out, transform 1s ease-in-out;
+
+  background-color: red;
+  position: relative;
+  animation: roll 15s linear infinite;
+}
+
+.btn:hover {
+  transform: rotate(360deg);
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(36deg) translateX(100vw);
+  }
+  25% {
+    transform: rotate(90deg) translateY(100vh);
+  }
+  50% {
+    transform: rotate(180deg) translateX(100vw);
+  }
+  75% {
+    transform: rotate(270deg) translateY(100vh);
+    /* transform: translate3d(500px, 500px, 500px); */
+  }
+  100% {
+    transform: rotate(360deg) translateX(100vw);
+  }
+}
