@@ -80,6 +80,12 @@ const Sw = styled.div`
   }
 `;
 
+const ImgAni = styled.div`
+  width: 500px;
+  height: 500px;
+  z-index: 0;
+`;
+
 function Home() {
   const [loginModal, setLoginModal] = useState(false);
 
@@ -94,25 +100,28 @@ function Home() {
   ];
   return (
     <>
-      <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-        slidesPerView={1}
-        autoplay={{
-          delay: 5000,
-        }}
-        loop={true}
-        pagination={{ clickable: true }}
-      >
-        {Data.map((item, idx) => {
-          return (
-            <SwiperSlide key={idx}>
-              <SwiperImgBox>
-                <SwiperImg src={item.src} />
-              </SwiperImgBox>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <ImgAni>
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          slidesPerView={1}
+          autoplay={{
+            delay: 5000,
+          }}
+          loop={true}
+          pagination={{ clickable: true }}
+        >
+          {Data.map((item, idx) => {
+            return (
+              <SwiperSlide key={idx}>
+                <SwiperImgBox>
+                  <SwiperImg src={item.src} />
+                </SwiperImgBox>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </ImgAni>
+
       <HomeContainer>
         <SS onClick={longinHandler}>입장하로 GO</SS>
         {loginModal ? <Modal /> : null}

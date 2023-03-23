@@ -19,11 +19,13 @@ function Signup() {
       alert('이미 가입된 vip닉네임입니다');
       return;
     }
+
     localStorage.setItem('join.nickname', join.nickname);
     localStorage.setItem('join.password', join.password);
     console.log(join.nickname);
     alert(`${join.nickname}VIP고객님 안녕하세요`);
     navigate('main');
+    window.location.reload();
   };
   return (
     <>
